@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">24 Project SRP</string>
+    <string name="title">24 Game</string>
+    <string name="main_help">Help</string>
+    <string name="levels">Levels</string>
+    <string name="timed">Time Challenge</string>
+    <string name="casual">Casual</string>
+    <string name="how_to_play">How to Play: Combine numbers using various operations to reach 24!</string>
+    <string name="levels_description">Levels: Mode for trying out problems of varying difficulty at your own pace.</string>
+    <string name="timed_description">Time Challenge: Try to complete 5 games of 24 as fast as possible!</string>
+    <string name="casual_description">Casual: Mode where you can play as many rounds as you want with no timed element</string>
+    <string name="z1">1</string>
+    <string name="z2">2</string>
+    <string name="z3">3</string>
+    <string name="z4">4</string>
+    <string name="z5">5</string>
+    <string name="z6">6</string>
+    <string name="z7">7</string>
+    <string name="z8">8</string>
+    <string name="z9">9</string>
+    <string name="z10">10</string>
+    <string name="z11">11</string>
+    <string name="z12">12</string>
+    <string name="z13">13</string>
+    <string name="z14">14</string>
+    <string name="z15">15</string>
+    <string name="z16">16</string>
+    <string name="z17">17</string>
+    <string name="z18">18</string>
+    <string name="z19">19</string>
+    <string name="z20">20</string>
+</resources>
