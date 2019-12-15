@@ -21,4 +21,8 @@ public class MainActivity extends AppCompatActivity {
         Intent levelMenuIntent = new Intent(this, levelMenuActivity.class);
         startActivity(levelMenuIntent);
     }
+    public void goToBaseGame(View view){
+        Intent baseGameIntent = new Intent(this, basicGameActivity.class);
+        startActivity(baseGameIntent);
+    }
 }
