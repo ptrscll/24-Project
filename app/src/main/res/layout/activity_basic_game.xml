@@ -108,7 +108,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:inputType="text"
-        android:text="@string/z19"
         android:textSize="30sp"
         app:layout_constraintEnd_toStartOf="@+id/txtOp1"
         app:layout_constraintHorizontal_bias="0.5"
@@ -121,7 +120,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:inputType="text"
-        android:text="@string/Divide"
         android:textSize="30sp"
         app:layout_constraintEnd_toStartOf="@+id/txtNum2"
         app:layout_constraintHorizontal_bias="0.5"
@@ -134,7 +132,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:inputType="text"
-        android:text="@string/z19"
         android:textSize="30sp"
         app:layout_constraintEnd_toStartOf="@+id/txtOp2"
         app:layout_constraintHorizontal_bias="0.5"
@@ -147,7 +144,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:inputType="text"
-        android:text="@string/Divide"
         android:textSize="30sp"
         app:layout_constraintEnd_toStartOf="@+id/txtNum3"
         app:layout_constraintHorizontal_bias="0.5"
@@ -160,7 +156,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:inputType="text"
-        android:text="@string/z19"
         android:textSize="30sp"
         app:layout_constraintEnd_toStartOf="@+id/txtOp3"
         app:layout_constraintHorizontal_bias="0.5"
@@ -173,7 +168,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:inputType="text"
-        android:text="@string/Divide"
         android:textSize="30sp"
         app:layout_constraintEnd_toStartOf="@+id/txtNum4"
         app:layout_constraintHorizontal_bias="0.5"
@@ -186,18 +180,18 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:inputType="text"
-        android:text="@string/z19"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/txtOp3"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/txtEquals"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btnEquals"
+        android:layout_width="45sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
+        android:onClick="checkNums"
         android:text="@string/equals"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -205,14 +199,13 @@
         app:layout_constraintTop_toBottomOf="@+id/txtOp2" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/txtAnswer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="@string/z19"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEquals" />
+        app:layout_constraintTop_toBottomOf="@+id/btnEquals" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
