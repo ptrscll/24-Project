@@ -54,6 +54,8 @@ public class basicGameActivity extends AppCompatActivity {
             return 0;
         }
     }
+
+    //Check if numbers reach 24
     public void checkNums(View view){
         //Creating vars for the textboxes
         EditText txtNum1 = (EditText)findViewById(R.id.txtNum1);
