@@ -38,16 +38,16 @@ public class basicGameActivity extends AppCompatActivity {
 
     //This is for checkNums to help convert operations into ints
     public int setOpVal(String op){
-        if(op == "+" || op == "1"){
+        if(op.equals("+") || op.equals("1")){
             return 1;
         }
-        else if(op == "-" || op == "2"){
+        else if(op.equals("-") || op.equals("2")){
             return 2;
         }
-        else if(op =="×" || op == "3"){
+        else if(op.equals("×") || op.equals("3")){
             return 3;
         }
-        else if(op == "÷" || op == "4"){
+        else if(op.equals("÷") || op.equals("4")){
             return 4;
         }
         else{
@@ -74,7 +74,7 @@ public class basicGameActivity extends AppCompatActivity {
         List<Integer> firstOps = new ArrayList<>();
         List<Integer> secondOps = new ArrayList<>();
         for(int i = 0; i < 3; i++){
-            int opVal = setOpVal(txtOps[i].toString());
+            int opVal = setOpVal(txtOps[i].getText().toString());
             if(opVal > 2){
                 firstOps.add(opVal);
                 secondOps.add(0);
@@ -112,12 +112,6 @@ public class basicGameActivity extends AppCompatActivity {
         }
         TextView txtAnswer = (TextView) findViewById(R.id.txtAnswer);
         txtAnswer.setText(Integer.toString(result));
-
-        //FOR DEBUGGING
-        if(firstOps.get(0) == 0){
-            txtAnswer.setText(txtOp1.getText().toString());
-        }
-
         if(result == 24){
             generateNewNums();
         }
