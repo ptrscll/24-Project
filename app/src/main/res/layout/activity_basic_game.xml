@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
+        android:onClick="addNum1"
         android:text="Button"
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/btnNum3"
@@ -23,6 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
+        android:onClick="addNum2"
         android:text="Button"
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/btnNum4"
@@ -35,6 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="54dp"
+        android:onClick="addNum3"
         android:text="Button"
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/btnSub"
@@ -47,6 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="54dp"
+        android:onClick="addNum4"
         android:text="Button"
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/btnMult"
@@ -59,6 +63,7 @@
         android:layout_width="60sp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="54dp"
+        android:onClick="addPlus"
         android:text="@string/plus"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -71,6 +76,7 @@
         android:layout_width="60sp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="54dp"
+        android:onClick="addMinus"
         android:text="@string/minus"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -83,6 +89,7 @@
         android:layout_width="60sp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="54dp"
+        android:onClick="addTimes"
         android:text="@string/times"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -95,6 +102,7 @@
         android:layout_width="60sp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="54dp"
+        android:onClick="addDivBy"
         android:text="@string/Divide"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -102,84 +110,98 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btnMult" />
 
-    <EditText
+    <TextView
         android:id="@+id/txtNum1"
         android:layout_width="40sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
         android:inputType="text"
+        android:text="@string/blank"
         android:textSize="30sp"
         app:layout_constraintEnd_toStartOf="@+id/txtOp1"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/txtOp1"
         android:layout_width="25sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
         android:inputType="text"
+        android:text="@string/blank"
         android:textSize="30sp"
         app:layout_constraintEnd_toStartOf="@+id/txtNum2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/txtNum1"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/txtNum2"
         android:layout_width="40sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
         android:inputType="text"
+        android:text="@string/blank"
         android:textSize="30sp"
         app:layout_constraintEnd_toStartOf="@+id/txtOp2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/txtOp1"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/txtOp2"
         android:layout_width="25sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
         android:inputType="text"
+        android:text="@string/blank"
         android:textSize="30sp"
         app:layout_constraintEnd_toStartOf="@+id/txtNum3"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/txtNum2"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/txtNum3"
         android:layout_width="40sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
         android:inputType="text"
+        android:text="@string/blank"
         android:textSize="30sp"
         app:layout_constraintEnd_toStartOf="@+id/txtOp3"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/txtOp2"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/txtOp3"
         android:layout_width="30sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
         android:inputType="text"
+        android:text="@string/blank"
         android:textSize="30sp"
         app:layout_constraintEnd_toStartOf="@+id/txtNum4"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/txtNum3"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/txtNum4"
         android:layout_width="40sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
         android:inputType="text"
+        android:text="@string/blank"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -187,14 +209,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnEquals"
-        android:layout_width="45sp"
+        android:id="@+id/btnCheck"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
+        android:enabled="false"
         android:onClick="checkNums"
         android:text="@string/equals"
-        android:textSize="30sp"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnClear"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtOp2" />
 
@@ -206,6 +231,17 @@
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnEquals" />
+        app:layout_constraintTop_toBottomOf="@+id/btnCheck" />
+
+    <Button
+        android:id="@+id/btnClear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="clearTxts"
+        android:text="@string/clear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnCheck"
+        app:layout_constraintTop_toTopOf="@+id/btnCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

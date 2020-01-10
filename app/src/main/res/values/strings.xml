@@ -3,7 +3,7 @@
     <string name="title">24 Game</string>
     <string name="main_help">Help</string>
     <string name="levels">Levels</string>
-    <string name="timed">Time Challenge</string>
+    <string name="timed" translatable="false">Time Challenge</string>
     <string name="casual">Casual</string>
     <string name="how_to_play">How to Play: Combine numbers using various operations to reach 24!</string>
     <string name="levels_description">Levels: Mode for trying out problems of varying difficulty at your own pace.</string>
@@ -33,5 +33,7 @@
     <string name="minus">-</string>
     <string name="Divide">÷</string>
     <string name="times">×</string>
-    <string name="equals">=</string>
+    <string name="blank">_</string>
+    <string name="clear">CLEAR</string>
+    <string name="equals" translatable="false">CHECK</string>
 </resources>
