@@ -12,13 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class basicGameActivity extends AppCompatActivity {
+public class easyModeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setContentView(R.layout.activity_easy_mode);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_basic_game);
-        Intent baseGameIntent = getIntent();
+        Intent easyModeIntent = getIntent();
         generateNewNums();
     }
 
@@ -46,12 +46,6 @@ public class basicGameActivity extends AppCompatActivity {
         else if(op.equals("-") || op.equals("2")){
             return 2;
         }
-        else if(op.equals("×") || op.equals("3")){
-            return 3;
-        }
-        else if(op.equals("÷") || op.equals("4")){
-            return 4;
-        }
         else{
             return 0;
         }
@@ -63,13 +57,9 @@ public class basicGameActivity extends AppCompatActivity {
             Button btnChecker = findViewById(R.id.btnCheck);
             Button btnPlus = findViewById(R.id.btnAdd);
             Button btnMinus = findViewById(R.id.btnSub);
-            Button btnTimes = findViewById(R.id.btnMult);
-            Button btnDivBy = findViewById(R.id.btnDiv);
             btnChecker.setEnabled(true);
             btnPlus.setEnabled(false);
             btnMinus.setEnabled(false);
-            btnTimes.setEnabled(false);
-            btnDivBy.setEnabled(false);
 
         }
     }
@@ -143,14 +133,6 @@ public class basicGameActivity extends AppCompatActivity {
         addOp((Button) findViewById(R.id.btnSub));
     }
 
-    public void addTimes(View view){
-        addOp((Button) findViewById(R.id.btnMult));
-    }
-
-    public void addDivBy(View view){
-        addOp((Button) findViewById(R.id.btnDiv));
-    }
-
     //Method for clearing textViews
     public void clearTxts(View view){
         TextView txtNum1 = findViewById(R.id.txtNum1);
@@ -166,14 +148,12 @@ public class basicGameActivity extends AppCompatActivity {
         }
         Button btnAdd = findViewById(R.id.btnAdd);
         Button btnSub = findViewById(R.id.btnSub);
-        Button btnMult = findViewById(R.id.btnMult);
-        Button btnDiv = findViewById(R.id.btnDiv);
         Button btnNum1 = findViewById(R.id.btnNum1);
         Button btnNum2 = findViewById(R.id.btnNum2);
         Button btnNum3 = findViewById(R.id.btnNum3);
         Button btnNum4 = findViewById(R.id.btnNum4);
-        Button[] btns = {btnAdd, btnSub, btnMult, btnDiv, btnNum1, btnNum2, btnNum3, btnNum4};
-        for(int i = 0; i < 8; i++){
+        Button[] btns = {btnAdd, btnSub, btnNum1, btnNum2, btnNum3, btnNum4};
+        for(int i = 0; i < 6; i++){
             btns[i].setEnabled(true);
         }
         Button btnCheck = findViewById(R.id.btnCheck);
@@ -213,22 +193,6 @@ public class basicGameActivity extends AppCompatActivity {
             else{
                 firstOps.add(0);
                 secondOps.add(opVal);
-            }
-        }
-
-        //Multiplying and Dividing
-        for(int i = 0; i < firstOps.size(); i++){
-            if (firstOps.get(i) != 0){
-                if(firstOps.get(i) == 3) {
-                    arrInts.set(i, arrInts.get(i) * arrInts.get(i + 1));
-                }
-                else if(firstOps.get(i) == 4){
-                    arrInts.set(i, arrInts.get(i)/arrInts.get(i+1));
-                }
-                arrInts.remove(i+1);
-                firstOps.remove(i);
-                secondOps.remove(i);
-                i--;
             }
         }
 

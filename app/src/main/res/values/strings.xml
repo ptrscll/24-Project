@@ -36,4 +36,7 @@
     <string name="blank">_</string>
     <string name="clear">CLEAR</string>
     <string name="equals" translatable="false">CHECK</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
 </resources>
