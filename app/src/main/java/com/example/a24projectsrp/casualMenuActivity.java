@@ -22,4 +22,8 @@ public class casualMenuActivity extends AppCompatActivity {
         Intent basicGameIntent = new Intent(this, basicGameActivity.class);
         startActivity(basicGameIntent);
     }
+    public void goToHardMode(View view){
+        Intent hardModeIntent = new Intent(this, hardModeActivity.class);
+        startActivity(hardModeIntent);
+    }
 }
