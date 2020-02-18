@@ -28,14 +28,42 @@ public class easyModeActivity extends AppCompatActivity {
 
     public void generateNewNums(){
         Random rand = new Random();
+        boolean works = false;
+        int n1 = 0;
+        int n2 = 0;
+        int n3 = 0;
+        int n4 = 0;
+        while(works == false){
+            n1 = rand.nextInt(13) + 1;
+            n2 = rand.nextInt(13) + 1;
+            n3 = rand.nextInt(13) + 1;
+            n4 = rand.nextInt(13) + 1;
+            if((n1 + n2 + n3 + n4) == 24) {
+                works = true;
+            }
+            else if ((n1+ n2 + n3 + n4) > 24){
+                if((n1 + n2 + n3 - n4) == 24)
+                    works = true;
+                else if((n1 + n2 - n3 + n4) == 24)
+                    works = true;
+                else if((n1 - n2 + n3 + n4) == 24)
+                    works = true;
+                else if((n1 - n2 + n3 - n4) == 24)
+                    works = true;
+                else if((n1 + n2 - n3 - n4) == 24)
+                    works = true;
+                else if((n1 - n2 - n3 + n4) == 24)
+                    works = true;
+            }
+        }
         Button num1 = (Button)findViewById(R.id.btnNum1);
-        num1.setText(Integer.toString(rand.nextInt(13) + 1));
+        num1.setText(Integer.toString(n1));
         Button num2 = (Button)findViewById(R.id.btnNum2);
-        num2.setText(Integer.toString(rand.nextInt(13) + 1));
+        num2.setText(Integer.toString(n2));
         Button num3 = (Button)findViewById(R.id.btnNum3);
-        num3.setText(Integer.toString(rand.nextInt(13) + 1));
+        num3.setText(Integer.toString(n3));
         Button num4 = (Button)findViewById(R.id.btnNum4);
-        num4.setText(Integer.toString(rand.nextInt(13) + 1));
+        num4.setText(Integer.toString(n4));
     }
 
     //This is for checkNums to help convert operations into ints

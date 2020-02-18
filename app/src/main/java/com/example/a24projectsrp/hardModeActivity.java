@@ -205,9 +205,9 @@ public class hardModeActivity extends AppCompatActivity {
         TextView[] txtOps = {txtOp1, txtOp2, txtOp3};
 
         //Converting textbox info into ints
-        List<Integer> arrInts = new ArrayList<>();
+        List<Double> arrNums = new ArrayList<>();
         for(int i = 0; i < 4; i ++){
-            arrInts.add(Integer.parseInt(txtNums[i].getText().toString()));
+            arrNums.add(Double.parseDouble(txtNums[i].getText().toString()));
         }
         List<Integer> zerothOps = new ArrayList<>();
         List<Integer> firstOps = new ArrayList<>();
@@ -234,8 +234,8 @@ public class hardModeActivity extends AppCompatActivity {
         //Raising to a Power
         for(int i = 0; i < zerothOps.size(); i++){
             if (zerothOps.get(i) != 0){
-                arrInts.set(i, (int) Math.pow(arrInts.get(i), arrInts.get(i+1)));
-                arrInts.remove(i+1);
+                arrNums.set(i, Math.pow(arrNums.get(i), arrNums.get(i+1)));
+                arrNums.remove(i+1);
                 zerothOps.remove(i);
                 firstOps.remove(i);
                 secondOps.remove(i);
@@ -247,12 +247,12 @@ public class hardModeActivity extends AppCompatActivity {
         for(int i = 0; i < firstOps.size(); i++){
             if (firstOps.get(i) != 0){
                 if(firstOps.get(i) == 3) {
-                    arrInts.set(i, arrInts.get(i) * arrInts.get(i + 1));
+                    arrNums.set(i, arrNums.get(i) * arrNums.get(i + 1));
                 }
                 else if(firstOps.get(i) == 4){
-                    arrInts.set(i, arrInts.get(i)/arrInts.get(i+1));
+                    arrNums.set(i, arrNums.get(i)/arrNums.get(i+1));
                 }
-                arrInts.remove(i+1);
+                arrNums.remove(i+1);
                 firstOps.remove(i);
                 secondOps.remove(i);
                 i--;
@@ -260,17 +260,22 @@ public class hardModeActivity extends AppCompatActivity {
         }
 
         //Adding and Subtracting
-        int result = arrInts.get(0);
+        double result = arrNums.get(0);
         for(int i = 0; i < secondOps.size(); i++) {
             if (secondOps.get(i) == 1) {
-                result += arrInts.get(i + 1);
+                result += arrNums.get(i + 1);
             } else if (secondOps.get(i) == 2) {
-                result -= arrInts.get(i + 1);
+                result -= arrNums.get(i + 1);
             }
         }
+
+        //Sending answer to Textview
         TextView txtAnswer = (TextView) findViewById(R.id.txtAnswer);
-        txtAnswer.setText(Integer.toString(result));
-        if(result == 24){
+        if(result == Math.floor(result))
+            txtAnswer.setText(Integer.toString((int)result));
+        else
+            txtAnswer.setText(Double.toString(Math.round(result*1000.0)/1000.0));
+        if(result == 24.0){
             generateNewNums();
         }
     }
