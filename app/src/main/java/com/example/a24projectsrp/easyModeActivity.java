@@ -3,6 +3,7 @@ package com.example.a24projectsrp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import static android.graphics.Color.rgb;
 
 public class easyModeActivity extends AppCompatActivity {
 
@@ -233,10 +236,21 @@ public class easyModeActivity extends AppCompatActivity {
                 result -= arrInts.get(i + 1);
             }
         }
+
+        //Sending Answer to TextView
         TextView txtAnswer = (TextView) findViewById(R.id.txtAnswer);
-        txtAnswer.setText(Integer.toString(result));
+        String answer = Integer.toString(result);
         if(result == 24){
+            answer += "        ✓";
+            txtAnswer.setTextColor(rgb(0, 255, 0));
             generateNewNums();
+            Button btnCheck = findViewById(R.id.btnCheck);
+            btnCheck.setEnabled(false);
         }
+        else{
+            answer += "        X";
+            txtAnswer.setTextColor(rgb(255, 0, 0));
+        }
+        txtAnswer.setText(answer);
     }
 }

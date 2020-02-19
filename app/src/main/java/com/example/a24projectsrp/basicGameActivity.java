@@ -3,6 +3,7 @@ package com.example.a24projectsrp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import static android.graphics.Color.rgb;
 
 public class basicGameActivity extends AppCompatActivity {
 
@@ -244,12 +247,22 @@ public class basicGameActivity extends AppCompatActivity {
 
         //Sending answer to textview
         TextView txtAnswer = (TextView) findViewById(R.id.txtAnswer);
+        String answer = "";
         if(result == Math.floor(result))
-            txtAnswer.setText(Integer.toString((int)result));
+            answer = Integer.toString((int)result);
         else
-            txtAnswer.setText(Double.toString(Math.round(result*1000.0)/1000.0));
+            answer = Double.toString(Math.round(result*1000.0)/1000.0);
         if(result == 24.0){
+            answer += "        ✓";
+            txtAnswer.setTextColor(rgb(0, 255, 0));
             generateNewNums();
+            Button btnCheck = findViewById(R.id.btnCheck);
+            btnCheck.setEnabled(false);
         }
+        else{
+            answer += "        X";
+            txtAnswer.setTextColor(rgb(255, 0, 0));
+        }
+        txtAnswer.setText(answer);
     }
 }
