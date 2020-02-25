@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -31,6 +32,84 @@ public class basicGameActivity extends AppCompatActivity {
 
     public void generateNewNums(){
         Random rand = new Random();
+        boolean works = false;
+        int n1 = 0;
+        int n2 = 0;
+        int n3 = 0;
+        int n4 = 0;
+        while(works == false){
+
+            //Generating new numbers
+            n1 = rand.nextInt(13) + 1;
+            n2 = rand.nextInt(13) + 1;
+            n3 = rand.nextInt(13) + 1;
+            n4 = rand.nextInt(13) + 1;
+
+            //Checking if they can produce a solution
+            for(int op1 = 1; op1 <= 4; op1++){
+                for(int op2 = 1; op2 <= 4; op2++){
+                    for(int op3 = 1; op3 <= 4; op3++){
+                        List<Double> arrNums = new ArrayList<>(Arrays.asList((double) n1, (double)
+                                n2, (double) n3, (double) n4));
+
+                        //Splitting up the operation possibilites
+                        int allOps [] = {op1, op2, op3};
+                        List<Integer> firstOps = new ArrayList<>();
+                        List<Integer> secondOps = new ArrayList<>();
+                        for(int i = 0; i < 3; i++){
+                            int opVal = allOps[i];
+                            if(opVal > 2){
+                                firstOps.add(opVal);
+                                secondOps.add(0);
+                            }
+                            else{
+                                firstOps.add(0);
+                                secondOps.add(opVal);
+                            }
+                        }
+
+                        //Multiplying and Dividing
+                        for(int i = 0; i < firstOps.size(); i++){
+                            if (firstOps.get(i) != 0){
+                                if(firstOps.get(i) == 3) {
+                                    arrNums.set(i, arrNums.get(i) * arrNums.get(i + 1));
+                                }
+                                else if(firstOps.get(i) == 4){
+                                    arrNums.set(i, arrNums.get(i)/arrNums.get(i+1));
+                                }
+                                arrNums.remove(i+1);
+                                firstOps.remove(i);
+                                secondOps.remove(i);
+                                i--;
+                            }
+                        }
+
+                        //Adding and Subtracting
+                        double result = arrNums.get(0);
+                        for(int i = 0; i < secondOps.size(); i++) {
+                            if (secondOps.get(i) == 1) {
+                                result += arrNums.get(i + 1);
+                            } else if (secondOps.get(i) == 2) {
+                                result -= arrNums.get(i + 1);
+                            }
+                        }
+
+                        //Checking if setup works
+                        if (result == 24.0)
+                            works = true;
+                    }
+                }
+            }
+        }
+        Button num1 = (Button)findViewById(R.id.btnNum1);
+        num1.setText(Integer.toString(n1));
+        Button num2 = (Button)findViewById(R.id.btnNum2);
+        num2.setText(Integer.toString(n2));
+        Button num3 = (Button)findViewById(R.id.btnNum3);
+        num3.setText(Integer.toString(n3));
+        Button num4 = (Button)findViewById(R.id.btnNum4);
+        num4.setText(Integer.toString(n4));
+        /*OLD CODE - NO GUARANTEED ANSWER
         Button num1 = (Button)findViewById(R.id.btnNum1);
         num1.setText(Integer.toString(rand.nextInt(13) + 1));
         Button num2 = (Button)findViewById(R.id.btnNum2);
@@ -39,6 +118,7 @@ public class basicGameActivity extends AppCompatActivity {
         num3.setText(Integer.toString(rand.nextInt(13) + 1));
         Button num4 = (Button)findViewById(R.id.btnNum4);
         num4.setText(Integer.toString(rand.nextInt(13) + 1));
+        */
     }
 
     //This is for checkNums to help convert operations into ints
