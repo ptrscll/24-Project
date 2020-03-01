@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.Stack;
 
 import static android.graphics.Color.rgb;
 
@@ -29,6 +30,54 @@ public class basicGameActivity extends AppCompatActivity {
     //Setting global vars
     public static boolean opsEntered = false;
     public static boolean numsEntered = false;
+
+    //The next 3 methods are all modified from https://www.geeksforgeeks.org/expression-evaluation/
+    //This method takes arrays of the numbers and operations entered and finds what they combine to
+    public double evaluate(double[] numbers, int[] operations){
+        //Declaring Stacks
+        Stack<Double> nums = new Stack();
+        Stack<Integer> ops = new Stack();
+
+        //Adding numbers and operations to stacks
+        nums.push(numbers[0]);
+        for (int i = 0; i < 3; i++){
+
+            //Performing earlier operations if they have precedence over the new operation
+            while (!ops.empty() && hasPrecedence(operations[i], ops.peek()))
+                nums.push(applyOp(ops.pop(), nums.pop(), nums.pop()));
+
+            //Adding next number and operation
+            ops.push(operations[i]);
+            nums.push(numbers[i+1]);
+        }
+
+        //Performing remaining operations and returning reuslt
+        while (!ops.empty())
+            nums.push(applyOp(ops.pop(), nums.pop(), nums.pop()));
+        return nums.pop();
+    }
+
+    // This method determines if the first operation comes before the second in order of operations
+    public boolean hasPrecedence(int op1, int op2) {
+        if ((op1 == 3 || op1 == 4) && (op2 == 1 || op2 == 2))
+            return false;
+        return true;
+    }
+
+    // This method is used to perform an operation on two numbers from an integer operation
+    public double applyOp(int op, double b, double a) {
+        switch (op) {
+            case 1:
+                return a + b;
+            case 2:
+                return a - b;
+            case 3:
+                return a * b;
+            case 4:
+                return a / b;
+        }
+        return 0;
+    }
 
     public void generateNewNums(){
         Random rand = new Random();
@@ -109,16 +158,6 @@ public class basicGameActivity extends AppCompatActivity {
         num3.setText(Integer.toString(n3));
         Button num4 = (Button)findViewById(R.id.btnNum4);
         num4.setText(Integer.toString(n4));
-        /*OLD CODE - NO GUARANTEED ANSWER
-        Button num1 = (Button)findViewById(R.id.btnNum1);
-        num1.setText(Integer.toString(rand.nextInt(13) + 1));
-        Button num2 = (Button)findViewById(R.id.btnNum2);
-        num2.setText(Integer.toString(rand.nextInt(13) + 1));
-        Button num3 = (Button)findViewById(R.id.btnNum3);
-        num3.setText(Integer.toString(rand.nextInt(13) + 1));
-        Button num4 = (Button)findViewById(R.id.btnNum4);
-        num4.setText(Integer.toString(rand.nextInt(13) + 1));
-        */
     }
 
     //This is for checkNums to help convert operations into ints
@@ -280,50 +319,17 @@ public class basicGameActivity extends AppCompatActivity {
         TextView[] txtNums = {txtNum1, txtNum2, txtNum3, txtNum4};
         TextView[] txtOps = {txtOp1, txtOp2, txtOp3};
 
-        //Converting textbox info into ints
-        List<Double> arrNums = new ArrayList<>();
-        for(int i = 0; i < 4; i ++){
-            arrNums.add(Double.parseDouble(txtNums[i].getText().toString()));
-        }
-        List<Integer> firstOps = new ArrayList<>();
-        List<Integer> secondOps = new ArrayList<>();
-        for(int i = 0; i < 3; i++){
-            int opVal = setOpVal(txtOps[i].getText().toString());
-            if(opVal > 2){
-                firstOps.add(opVal);
-                secondOps.add(0);
-            }
-            else{
-                firstOps.add(0);
-                secondOps.add(opVal);
-            }
-        }
+        //Converting textbox info into arrays
+        double[] arrNums = {0, 0, 0, 0};
+        for(int i = 0; i < 4; i ++)
+            arrNums[i] = Double.parseDouble(txtNums[i].getText().toString());
 
-        //Multiplying and Dividing
-        for(int i = 0; i < firstOps.size(); i++){
-            if (firstOps.get(i) != 0){
-                if(firstOps.get(i) == 3) {
-                    arrNums.set(i, arrNums.get(i) * arrNums.get(i + 1));
-                }
-                else if(firstOps.get(i) == 4){
-                    arrNums.set(i, arrNums.get(i)/arrNums.get(i+1));
-                }
-                arrNums.remove(i+1);
-                firstOps.remove(i);
-                secondOps.remove(i);
-                i--;
-            }
-        }
+        int[] arrOps = {0, 0, 0};
+        for(int i = 0; i < 3; i++)
+            arrOps[i] = setOpVal(txtOps[i].getText().toString());
 
-        //Adding and Subtracting
-        double result = arrNums.get(0);
-        for(int i = 0; i < secondOps.size(); i++) {
-            if (secondOps.get(i) == 1) {
-                result += arrNums.get(i + 1);
-            } else if (secondOps.get(i) == 2) {
-                result -= arrNums.get(i + 1);
-            }
-        }
+        //Evaluating operations and numbers
+        double result = evaluate(arrNums, arrOps);
 
         //Sending answer to textview
         TextView txtAnswer = (TextView) findViewById(R.id.txtAnswer);

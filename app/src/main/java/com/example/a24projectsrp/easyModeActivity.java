@@ -213,26 +213,16 @@ public class easyModeActivity extends AppCompatActivity {
         for(int i = 0; i < 4; i ++){
             arrInts.add(Integer.parseInt(txtNums[i].getText().toString()));
         }
-        List<Integer> firstOps = new ArrayList<>();
-        List<Integer> secondOps = new ArrayList<>();
-        for(int i = 0; i < 3; i++){
-            int opVal = setOpVal(txtOps[i].getText().toString());
-            if(opVal > 2){
-                firstOps.add(opVal);
-                secondOps.add(0);
-            }
-            else{
-                firstOps.add(0);
-                secondOps.add(opVal);
-            }
-        }
+        List<Integer> allOps = new ArrayList<>();
+        for(int i = 0; i < 3; i++)
+            allOps.add(setOpVal(txtOps[i].getText().toString()));
 
         //Adding and Subtracting
         int result = arrInts.get(0);
-        for(int i = 0; i < secondOps.size(); i++) {
-            if (secondOps.get(i) == 1) {
+        for(int i = 0; i < allOps.size(); i++) {
+            if (allOps.get(i) == 1) {
                 result += arrInts.get(i + 1);
-            } else if (secondOps.get(i) == 2) {
+            } else if (allOps.get(i) == 2) {
                 result -= arrInts.get(i + 1);
             }
         }
