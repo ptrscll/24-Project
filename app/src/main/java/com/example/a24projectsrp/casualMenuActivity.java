@@ -12,7 +12,6 @@ public class casualMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_casual_menu);
-        Intent casualMenuIntent = getIntent();
     }
     public void goToEasyMode(View view){
         Intent easyModeIntent = new Intent(this, easyModeActivity.class);

@@ -1,9 +1,6 @@
 package com.example.a24projectsrp;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,7 +18,6 @@ public class easyModeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_easy_mode);
         super.onCreate(savedInstanceState);
-        Intent easyModeIntent = getIntent();
         generateNewNums();
     }
 
@@ -36,7 +32,7 @@ public class easyModeActivity extends AppCompatActivity {
         int n2 = 0;
         int n3 = 0;
         int n4 = 0;
-        while(works == false){
+        while(!works){
             n1 = rand.nextInt(13) + 1;
             n2 = rand.nextInt(13) + 1;
             n3 = rand.nextInt(13) + 1;
@@ -59,32 +55,19 @@ public class easyModeActivity extends AppCompatActivity {
                     works = true;
             }
         }
-        Button num1 = (Button)findViewById(R.id.btnNum1);
+        Button num1 = findViewById(R.id.btnNum1);
         num1.setText(Integer.toString(n1));
-        Button num2 = (Button)findViewById(R.id.btnNum2);
+        Button num2 = findViewById(R.id.btnNum2);
         num2.setText(Integer.toString(n2));
-        Button num3 = (Button)findViewById(R.id.btnNum3);
+        Button num3 = findViewById(R.id.btnNum3);
         num3.setText(Integer.toString(n3));
-        Button num4 = (Button)findViewById(R.id.btnNum4);
+        Button num4 = findViewById(R.id.btnNum4);
         num4.setText(Integer.toString(n4));
-    }
-
-    //This is for checkNums to help convert operations into ints
-    public int setOpVal(String op){
-        if(op.equals("+") || op.equals("1")){
-            return 1;
-        }
-        else if(op.equals("-") || op.equals("2")){
-            return 2;
-        }
-        else{
-            return 0;
-        }
     }
 
     //Function used in addNum/addOp to check if all inputs are entered and disable/enable buttons
     public void checkInputs(){
-        if(numsEntered == true && opsEntered == true){
+        if(numsEntered && opsEntered){
             Button btnChecker = findViewById(R.id.btnCheck);
             Button btnPlus = findViewById(R.id.btnAdd);
             Button btnMinus = findViewById(R.id.btnSub);
@@ -215,7 +198,7 @@ public class easyModeActivity extends AppCompatActivity {
         }
         List<Integer> allOps = new ArrayList<>();
         for(int i = 0; i < 3; i++)
-            allOps.add(setOpVal(txtOps[i].getText().toString()));
+            allOps.add(MainActivity.setOpVal(txtOps[i].getText().toString()));
 
         //Adding and Subtracting
         int result = arrInts.get(0);
@@ -228,7 +211,7 @@ public class easyModeActivity extends AppCompatActivity {
         }
 
         //Sending Answer to TextView
-        TextView txtAnswer = (TextView) findViewById(R.id.txtAnswer);
+        TextView txtAnswer = findViewById(R.id.txtAnswer);
         String answer = Integer.toString(result);
         if(result == 24){
             answer += "        ✓";

@@ -1,19 +1,11 @@
 package com.example.a24projectsrp;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
-import java.util.Stack;
 
 import static android.graphics.Color.rgb;
 
@@ -23,61 +15,12 @@ public class basicGameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basic_game);
-        Intent baseGameIntent = getIntent();
         generateNewNums();
     }
 
     //Setting global vars
     public static boolean opsEntered = false;
     public static boolean numsEntered = false;
-
-    //The next 3 methods are all modified from https://www.geeksforgeeks.org/expression-evaluation/
-    //This method takes arrays of the numbers and operations entered and finds what they combine to
-    public double evaluate(double[] numbers, int[] operations){
-        //Declaring Stacks
-        Stack<Double> nums = new Stack();
-        Stack<Integer> ops = new Stack();
-
-        //Adding numbers and operations to stacks
-        nums.push(numbers[0]);
-        for (int i = 0; i < 3; i++){
-
-            //Performing earlier operations if they have precedence over the new operation
-            while (!ops.empty() && hasPrecedence(operations[i], ops.peek()))
-                nums.push(applyOp(ops.pop(), nums.pop(), nums.pop()));
-
-            //Adding next number and operation
-            ops.push(operations[i]);
-            nums.push(numbers[i+1]);
-        }
-
-        //Performing remaining operations and returning reuslt
-        while (!ops.empty())
-            nums.push(applyOp(ops.pop(), nums.pop(), nums.pop()));
-        return nums.pop();
-    }
-
-    // This method determines if the first operation comes before the second in order of operations
-    public boolean hasPrecedence(int op1, int op2) {
-        if ((op1 == 3 || op1 == 4) && (op2 == 1 || op2 == 2))
-            return false;
-        return true;
-    }
-
-    // This method is used to perform an operation on two numbers from an integer operation
-    public double applyOp(int op, double b, double a) {
-        switch (op) {
-            case 1:
-                return a + b;
-            case 2:
-                return a - b;
-            case 3:
-                return a * b;
-            case 4:
-                return a / b;
-        }
-        return 0;
-    }
 
     public void generateNewNums(){
         Random rand = new Random();
@@ -86,7 +29,7 @@ public class basicGameActivity extends AppCompatActivity {
         int n2 = 0;
         int n3 = 0;
         int n4 = 0;
-        while(works == false){
+        while(!works){
 
         //Generating new numbers
         n1 = rand.nextInt(13) + 1;
@@ -100,7 +43,7 @@ public class basicGameActivity extends AppCompatActivity {
             for(int op2 = 1; op2 <= 4; op2++){
                 for(int op3 = 1; op3 <= 4; op3++){
                     int arrOps [] = {op1, op2, op3};
-                    if (evaluate(arrNums, arrOps) == 24.0)
+                    if (MainActivity.evaluate(arrNums, arrOps) == 24.0)
                         works = true;
                 }
             }
@@ -108,38 +51,19 @@ public class basicGameActivity extends AppCompatActivity {
     }
 
     //Adding correct numbers to buttons
-    Button num1 = (Button)findViewById(R.id.btnNum1);
+    Button num1 = findViewById(R.id.btnNum1);
         num1.setText(Integer.toString(n1));
-    Button num2 = (Button)findViewById(R.id.btnNum2);
+    Button num2 = findViewById(R.id.btnNum2);
         num2.setText(Integer.toString(n2));
-    Button num3 = (Button)findViewById(R.id.btnNum3);
+    Button num3 = findViewById(R.id.btnNum3);
         num3.setText(Integer.toString(n3));
-    Button num4 = (Button)findViewById(R.id.btnNum4);
+    Button num4 = findViewById(R.id.btnNum4);
         num4.setText(Integer.toString(n4));
-    }
-
-    //This is for checkNums to help convert operations into ints
-    public int setOpVal(String op){
-        if(op.equals("+") || op.equals("1")){
-            return 1;
-        }
-        else if(op.equals("-") || op.equals("2")){
-            return 2;
-        }
-        else if(op.equals("×") || op.equals("3")){
-            return 3;
-        }
-        else if(op.equals("÷") || op.equals("4")){
-            return 4;
-        }
-        else{
-            return 0;
-        }
     }
 
     //Function used in addNum/addOp to check if all inputs are entered and disable/enable buttons
     public void checkInputs(){
-        if(numsEntered == true && opsEntered == true){
+        if(numsEntered && opsEntered){
             Button btnChecker = findViewById(R.id.btnCheck);
             Button btnPlus = findViewById(R.id.btnAdd);
             Button btnMinus = findViewById(R.id.btnSub);
@@ -284,14 +208,14 @@ public class basicGameActivity extends AppCompatActivity {
 
         int[] arrOps = {0, 0, 0};
         for(int i = 0; i < 3; i++)
-            arrOps[i] = setOpVal(txtOps[i].getText().toString());
+            arrOps[i] = MainActivity.setOpVal(txtOps[i].getText().toString());
 
         //Evaluating operations and numbers
-        double result = evaluate(arrNums, arrOps);
+        double result = MainActivity.evaluate(arrNums, arrOps);
 
         //Sending answer to textview
-        TextView txtAnswer = (TextView) findViewById(R.id.txtAnswer);
-        String answer = "";
+        TextView txtAnswer = findViewById(R.id.txtAnswer);
+        String answer;
         if(result == Math.floor(result))
             answer = Integer.toString((int)result);
         else
