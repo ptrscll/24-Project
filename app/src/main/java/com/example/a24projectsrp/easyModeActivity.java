@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -27,7 +30,7 @@ public class easyModeActivity extends AppCompatActivity {
 
     public void generateNewNums(){
         Random rand = new Random();
-        boolean works = false;
+        /*boolean works = false;
         int n1 = 0;
         int n2 = 0;
         int n3 = 0;
@@ -62,7 +65,35 @@ public class easyModeActivity extends AppCompatActivity {
         Button num3 = findViewById(R.id.btnNum3);
         num3.setText(Integer.toString(n3));
         Button num4 = findViewById(R.id.btnNum4);
-        num4.setText(Integer.toString(n4));
+        num4.setText(Integer.toString(n4));*/
+
+        int randNum = rand.nextInt(21) + 1;
+        String ints = "";
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new InputStreamReader(
+                    getAssets().open("easyNums.txt")));
+
+            // do reading, usually loop until end of file reading
+            for(int i = 0; i < randNum; i++)
+                ints = reader.readLine();
+            reader.close();
+        } catch (IOException e) {
+
+        }
+        String[] strValArr = ints.split(" ");
+        int[] intValArr = new int[4];
+        for(int i = 0; i < 4; i++)
+            intValArr[i] = Integer.parseInt(strValArr[i]);
+        //Adding correct numbers to buttons
+        Button num1 = findViewById(R.id.btnNum1);
+        num1.setText(Integer.toString(intValArr[0]));
+        Button num2 = findViewById(R.id.btnNum2);
+        num2.setText(Integer.toString(intValArr[1]));
+        Button num3 = findViewById(R.id.btnNum3);
+        num3.setText(Integer.toString(intValArr[2]));
+        Button num4 = findViewById(R.id.btnNum4);
+        num4.setText(Integer.toString(intValArr[3]));
     }
 
     //Function used in addNum/addOp to check if all inputs are entered and disable/enable buttons
