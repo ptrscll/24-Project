@@ -53,7 +53,7 @@ public class hardModeActivity extends AppCompatActivity {
                 }
             }
         }*/
-        int randNum = rand.nextInt(17) + 1;
+        int randNum = rand.nextInt(30) + 1;
         String ints = "";
         BufferedReader reader = null;
         try {

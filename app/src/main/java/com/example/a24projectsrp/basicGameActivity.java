@@ -56,7 +56,7 @@ public class basicGameActivity extends AppCompatActivity {
                 }
             }
         }*/
-        int randNum = rand.nextInt(34) + 1;
+        int randNum = rand.nextInt(52) + 1;
         String ints = "";
         BufferedReader reader = null;
         try {

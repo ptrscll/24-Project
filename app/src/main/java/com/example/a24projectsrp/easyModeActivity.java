@@ -67,7 +67,7 @@ public class easyModeActivity extends AppCompatActivity {
         Button num4 = findViewById(R.id.btnNum4);
         num4.setText(Integer.toString(n4));*/
 
-        int randNum = rand.nextInt(21) + 1;
+        int randNum = rand.nextInt(33) + 1;
         String ints = "";
         BufferedReader reader = null;
         try {
